@@ -3,9 +3,9 @@ import os
 import shutil
 import sqlite3
 
-# Création du dossier "traité" s'il n'existe pas
-if not os.path.exists("traité"):
-    os.makedirs("traité")
+# Création du dossier "traite" s'il n'existe pas
+if not os.path.exists("traite"):
+    os.makedirs("traite")
 
 # Connexion à la base de données (ou création si elle n'existe pas)
 db_conn = sqlite3.connect("results.db")
@@ -22,9 +22,9 @@ db_cursor.execute('''
 
 # Chargement des images de la banque de pièces
 piece_images = []
-for piece_file in os.listdir("pieces"):
+for piece_file in os.listdir("images/pieces"):
     if piece_file.endswith(".jpg"):
-        piece_path = os.path.join("pieces", piece_file)
+        piece_path = os.path.join("images/pieces", piece_file)
         piece_image = cv2.imread(piece_path, cv2.IMREAD_GRAYSCALE)
         piece_images.append((piece_file, piece_image))
 
@@ -50,8 +50,8 @@ for live_file in os.listdir("live"):
         ''', (live_file, best_piece_name, best_similarity))
         db_conn.commit()
 
-        # Déplacement de l'image vers le dossier "traité"
-        treated_path = os.path.join("traité", live_file)
+        # Déplacement de l'image vers le dossier "traite"
+        treated_path = os.path.join("traite", live_file)
         shutil.move(live_path, treated_path)
         print(f"Image traitée: {live_file}")
 
