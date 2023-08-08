@@ -33,6 +33,7 @@ def lancementTraitementDesImagesLive():
             for piece_name, piece_image in piece_images:
                 similarity = cv2.matchTemplate(live_image, piece_image, cv2.TM_CCOEFF_NORMED)
                 testSimilarity = similarity[0][0]
+                # TODO : Fix la similarité
                 if testSimilarity < 0:
                     testSimilarity = best_similarity
                 if testSimilarity > best_similarity:
