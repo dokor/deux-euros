@@ -4,11 +4,11 @@ import shutil
 import sqlite3
 
 # Création du dossier "traite" s'il n'existe pas
-if not os.path.exists("traite"):
-    os.makedirs("traite")
+if not os.path.exists("../../assets/images/traite"):
+    os.makedirs("../../assets/images/traite")
 
 # Connexion à la base de données (ou création si elle n'existe pas)
-db_conn = sqlite3.connect("results.db")
+db_conn = sqlite3.connect("../../results.db")
 db_cursor = db_conn.cursor()
 
 # Création de la table dans la base de données si elle n'existe pas
@@ -22,16 +22,16 @@ db_cursor.execute('''
 
 # Chargement des images de la banque de pièces
 piece_images = []
-for piece_file in os.listdir("images/pieces"):
+for piece_file in os.listdir("../../assets/images/pieces"):
     if piece_file.endswith(".jpg"):
-        piece_path = os.path.join("images/pieces", piece_file)
+        piece_path = os.path.join("../../assets/images/pieces", piece_file)
         piece_image = cv2.imread(piece_path, cv2.IMREAD_GRAYSCALE)
         piece_images.append((piece_file, piece_image))
 
 # Parcours des images du dossier "live"
-for live_file in os.listdir("live"):
+for live_file in os.listdir("../../assets/images/live"):
     if live_file.endswith(".jpg"):
-        live_path = os.path.join("live", live_file)
+        live_path = os.path.join("../../assets/images/live", live_file)
         live_image = cv2.imread(live_path, cv2.IMREAD_GRAYSCALE)
 
         # Comparaison avec les images de la banque de pièces
@@ -51,7 +51,7 @@ for live_file in os.listdir("live"):
         db_conn.commit()
 
         # Déplacement de l'image vers le dossier "traite"
-        treated_path = os.path.join("traite", live_file)
+        treated_path = os.path.join("../../assets/images/traite", live_file)
         shutil.move(live_path, treated_path)
         print(f"Image traitée: {live_file}")
 

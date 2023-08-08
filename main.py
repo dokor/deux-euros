@@ -3,8 +3,8 @@ import time
 import os
 
 # Création du dossier "live" s'il n'existe pas
-if not os.path.exists("live"):
-    os.makedirs("live")
+if not os.path.exists("assets/images/live"):
+    os.makedirs("assets/images/live")
 
 # Initialisation de la webcam
 cap = cv2.VideoCapture(0)  # 0 correspond à la webcam principale
@@ -33,7 +33,7 @@ try:
         current_time = time.time()
         if current_time - start_time >= capture_interval:
             # Création du chemin complet pour enregistrer l'image dans le dossier "live"
-            image_filename = os.path.join("live", f"capture_{int(current_time)}.jpg")
+            image_filename = os.path.join("assets/images/live", f"capture_{int(current_time)}.jpg")
             cv2.imwrite(image_filename, frame)
             print(f"Image capturée: {image_filename}")
             start_time = current_time
