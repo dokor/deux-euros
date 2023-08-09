@@ -6,3 +6,7 @@
 
 # A regarder 
 https://developer.ebay.com/develop/apis
+
+
+# A installer 
+pip install opencv-python
