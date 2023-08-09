@@ -7,7 +7,7 @@ from script.services.stockage import database
 
 def lancementTraitementDesImagesLive():
     # Création du dossier "traite" s'il n'existe pas
-    if not os.path.exists(os.path.abspath("assets/images/traite") ):
+    if not os.path.exists(os.path.abspath("assets/images/traite")):
         os.makedirs(os.path.abspath("assets/images/traite"))
 
     # Chargement des images de la banque de pièces
